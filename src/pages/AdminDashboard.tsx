@@ -109,6 +109,12 @@ const AdminDashboard = () => {
         }
     };
 
+    // ✅ Helper: Get doctor email by ID
+    const getDoctorEmail = (doctorId: string) => {
+        const doctor = users.find((u) => u.uid === doctorId);
+        return doctor ? doctor.email : "Unassigned";
+    };
+
     return (
         <div className="p-6 bg-background min-h-screen">
             <h1 className="text-3xl font-bold mb-6 text-text">Admin Dashboard</h1>
@@ -169,7 +175,7 @@ const AdminDashboard = () => {
             </div>
 
             {/* Assign Patients */}
-            <div>
+            <div className="mb-10">
                 <h2 className="text-xl font-semibold mb-4 text-text">
                     Assign Patients to Doctors
                 </h2>
@@ -210,6 +216,33 @@ const AdminDashboard = () => {
                     >
                         Assign
                     </button>
+                </div>
+            </div>
+
+            {/* Patients Table */}
+            <div>
+                <h2 className="text-xl font-semibold mb-4 text-text">All Patients</h2>
+                <div className="overflow-x-auto bg-surface rounded-lg shadow">
+                    <table className="min-w-full border text-sm">
+                        <thead className="bg-gray-100">
+                            <tr>
+                                <th className="p-3 border-b">Name</th>
+                                <th className="p-3 border-b">Email</th>
+                                <th className="p-3 border-b">Assigned Doctor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {patients.map((p) => (
+                                <tr key={p.uid} className="hover:bg-gray-50">
+                                    <td className="p-3 border-b">{p.name || "(no name)"}</td>
+                                    <td className="p-3 border-b">{p.email}</td>
+                                    <td className="p-3 border-b">
+                                        {getDoctorEmail(p.doctorId)}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
