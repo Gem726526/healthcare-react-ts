@@ -123,7 +123,7 @@ const AdminDashboard = () => {
             <div className="bg-surface p-4 rounded-lg shadow-md mb-8">
                 <p>
                     Logged in as:{" "}
-                    <span className="font-semibold">{currentUser?.email}</span>
+                    <span className="font-semibold">{currentUser?.displayName ? currentUser?.displayName : currentUser?.email}</span>
                 </p>
                 <p className="text-sm text-gray-500">Role: {role}</p>
             </div>

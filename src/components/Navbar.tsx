@@ -1,3 +1,4 @@
+// src/components/Navbar.tsx
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { auth } from "../services/firebase";
@@ -15,6 +16,7 @@ const Navbar = () => {
 
     return (
         <nav className="bg-navbar text-white px-6 py-3 flex justify-between items-center">
+            {/* Left Links */}
             <div className="flex space-x-6 font-medium">
                 {role === "doctor" && (
                     <>
@@ -37,14 +39,18 @@ const Navbar = () => {
                     </Link>
                 )}
             </div>
-            <button
-                onClick={handleLogout}
-                className="bg-danger hover:bg-danger-dark px-4 py-2 rounded text-white font-semibold transition"
-            >
-                Logout
-            </button>
-        </nav>
 
+            {/* Right User Info + Logout */}
+            <div className="flex items-center gap-4">
+                <span className="text-sm font-medium">{currentUser.displayName || currentUser.email}</span>
+                <button
+                    onClick={handleLogout}
+                    className="bg-danger hover:bg-danger-dark px-4 py-2 rounded text-white font-semibold transition"
+                >
+                    Logout
+                </button>
+            </div>
+        </nav>
     );
 };
 

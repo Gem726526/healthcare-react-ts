@@ -38,6 +38,7 @@ const DoctorDashboard = () => {
                 console.error("Error fetching patients:", error);
             } finally {
                 hideLoading();
+                console.log("Fetch patients completed", currentUser);
             }
         };
 
@@ -45,6 +46,7 @@ const DoctorDashboard = () => {
     }, [currentUser]);
 
     return (
+
         <div className="p-6 bg-background min-h-screen">
             {/* Header */}
             <h1 className="text-3xl font-bold mb-6 text-text">Doctor Dashboard</h1>
@@ -52,7 +54,7 @@ const DoctorDashboard = () => {
             {/* Doctor Info */}
             <div className="bg-surface p-4 rounded-lg shadow-md mb-8">
                 <p className="text-lg">
-                    Welcome, <span className="font-semibold">{currentUser?.email}</span>
+                    Welcome, <span className="font-semibold">{currentUser?.displayName ? currentUser.displayName : currentUser?.email}</span>
                 </p>
                 <p className="text-sm text-gray-500">Role: {role}</p>
             </div>
